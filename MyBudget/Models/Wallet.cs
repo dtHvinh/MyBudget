@@ -13,6 +13,8 @@ public class Wallet(string name, decimal initialBalance, string currency, Wallet
 
     [ForeignKey(nameof(User))] public int UserId { get; set; }
     public User User { get; set; } = default!;
+
+    public ICollection<Transaction> Transactions { get; set; } = default!;
 }
 
 public enum WalletType

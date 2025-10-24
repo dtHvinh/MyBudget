@@ -1,20 +1,28 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿namespace MyBudget.Models;
 
-namespace MyBudget.Models;
-
-public class Wallet(string name, decimal initialBalance, string currency, WalletType type)
+public class Wallet
 {
     public int Id { get; private set; }
-    public string Name { get; private set; } = name;
-    public decimal Balance { get; private set; } = initialBalance;
-    public string Currency { get; private set; } = currency;
-    public WalletType Type { get; private set; } = type;
+    public string Name { get; private set; } = default!;
+    public decimal Balance { get; private set; }
+    public string Currency { get; private set; } = default!;
+    public WalletType Type { get; private set; }
     public DateTimeOffset? CreatedDate { get; init; } = DateTimeOffset.UtcNow;
 
-    [ForeignKey(nameof(User))] public int UserId { get; set; }
-    public User User { get; set; } = default!;
-
     public ICollection<Transaction> Transactions { get; set; } = default!;
+
+    public Wallet(string name, decimal initialBalance, string currency, WalletType type)
+    {
+        Name = name;
+        Balance = initialBalance;
+        Currency = currency;
+        Type = type;
+    }
+
+    public Wallet()
+    {
+
+    }
 }
 
 public enum WalletType

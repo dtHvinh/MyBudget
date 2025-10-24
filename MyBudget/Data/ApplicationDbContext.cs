@@ -7,7 +7,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 {
     public DbSet<Category> Categories { get; } = default!;
     public DbSet<Transaction> Transactions { get; } = default!;
-    public DbSet<User> Users { get; } = default!;
     public DbSet<Wallet> Wallets { get; } = default!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

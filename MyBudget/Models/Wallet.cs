@@ -7,7 +7,7 @@ public class Wallet
     public decimal Balance { get; private set; }
     public string Currency { get; private set; } = default!;
     public WalletType Type { get; private set; }
-    public DateTimeOffset? CreatedDate { get; init; } = DateTimeOffset.UtcNow;
+    public DateTimeOffset CreatedDate { get; init; } = DateTimeOffset.UtcNow;
 
     public ICollection<Transaction> Transactions { get; set; } = default!;
 

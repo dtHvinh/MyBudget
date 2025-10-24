@@ -5,9 +5,9 @@ namespace MyBudget.Data;
 
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
 {
-    public DbSet<Category> Categories { get; } = default!;
-    public DbSet<Transaction> Transactions { get; } = default!;
-    public DbSet<Wallet> Wallets { get; } = default!;
+    public DbSet<Category> Categories { get; private set; } = default!;
+    public DbSet<Transaction> Transactions { get; private set; } = default!;
+    public DbSet<Wallet> Wallets { get; private set; } = default!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

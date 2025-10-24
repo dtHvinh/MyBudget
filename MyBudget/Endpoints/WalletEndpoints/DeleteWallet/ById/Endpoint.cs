@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using MyBudget.Data;
 using MyBudget.Models;
 
-namespace MyBudget.Endpoints.WalletEndpoints.DeleteWallet;
+namespace MyBudget.Endpoints.WalletEndpoints.DeleteWallet.ById;
 
 public class Endpoint(ApplicationDbContext context) : EndpointWithoutRequest<Results<NoContent, NotFound>>
 {

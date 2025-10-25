@@ -27,5 +27,6 @@ public class Category
 public enum CategoryType
 {
     Income,
-    Expense
+    Expense,
+    Transfer
 }

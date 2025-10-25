@@ -5,10 +5,10 @@ namespace MyBudget.Models;
 public class Transaction
 {
     public int Id { get; private set; }
-    public decimal Amount { get; private set; }
-    public string? Note { get; private set; }
-    public DateTimeOffset Date { get; private set; }
-    public TransactionType Type { get; private set; }
+    public decimal Amount { get; set; }
+    public string? Note { get; set; }
+    public DateTimeOffset Date { get; set; }
+    public TransactionType Type { get; set; }
 
     [ForeignKey(nameof(Wallet))] public int WalletId { get; set; }
     public Wallet Wallet { get; set; } = default!;
@@ -19,13 +19,6 @@ public class Transaction
     public Transaction()
     {
 
-    }
-
-    public Transaction(decimal amount, string? note, TransactionType type)
-    {
-        Amount = amount;
-        Note = note;
-        Type = type;
     }
 }
 

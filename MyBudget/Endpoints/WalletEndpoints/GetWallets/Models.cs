@@ -13,6 +13,6 @@ public sealed class GetWalletResponse
     public required string Name { get; set; }
     public required decimal Balance { get; set; }
     public required string Currency { get; set; }
-    public required string Type { get; set; }
+    public required string WalletType { get; set; }
     public required DateTimeOffset CreatedDate { get; set; }
 }

@@ -16,10 +16,10 @@ public class Category
     }
 
     public int Id { get; private set; }
-    public string Name { get; private set; } = default!;
-    public string Description { get; private set; } = default!;
-    public string? Icon { get; private set; }
-    public CategoryType Type { get; private set; }
+    public string Name { get; set; } = default!;
+    public string Description { get; set; } = default!;
+    public string? Icon { get; set; }
+    public CategoryType Type { get; set; }
 
     public ICollection<Transaction> Transactions { get; set; } = default!;
 }

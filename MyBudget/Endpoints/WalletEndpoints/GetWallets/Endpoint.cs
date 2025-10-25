@@ -26,7 +26,7 @@ public class Endpoint(ApplicationDbContext context) : Endpoint<GetWalletRequest,
                 Name = e.Name,
                 Balance = e.Balance,
                 Currency = e.Currency,
-                Type = e.Type.ToString(),
+                WalletType = e.WalletType.ToString(),
                 CreatedDate = e.CreatedDate
             })];
 

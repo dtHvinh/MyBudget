@@ -1,6 +1,4 @@
-﻿using MyBudget.Models;
-
-namespace MyBudget.Endpoints.WalletEndpoints.GetWalletDetails.ById;
+﻿namespace MyBudget.Endpoints.WalletEndpoints.GetWalletDetails.ById;
 
 public sealed class GetWalletDetailsResponse
 {
@@ -8,6 +6,6 @@ public sealed class GetWalletDetailsResponse
     public string Name { get; set; } = default!;
     public decimal Balance { get; set; }
     public string Currency { get; set; } = default!;
-    public WalletType Type { get; set; }
+    public string WalletType { get; set; } = default!;
     public DateTimeOffset CreatedDate { get; set; }
 }

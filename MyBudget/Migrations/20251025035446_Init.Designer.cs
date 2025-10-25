@@ -11,7 +11,7 @@ using MyBudget.Data;
 namespace MyBudget.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251024022800_Init")]
+    [Migration("20251025035446_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -89,7 +89,7 @@ namespace MyBudget.Migrations
                     b.Property<decimal>("Balance")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTimeOffset?>("CreatedDate")
+                    b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Currency")
@@ -100,13 +100,51 @@ namespace MyBudget.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Type")
+                    b.Property<int>("WalletTypeId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WalletTypeId");
+
+                    b.ToTable("Wallets");
+                });
+
+            modelBuilder.Entity("MyBudget.Models.WalletType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Wallets");
+                    b.ToTable("WalletTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Cash"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "BankAccount"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "CreditCard"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "DigitalWallet"
+                        });
                 });
 
             modelBuilder.Entity("MyBudget.Models.Transaction", b =>
@@ -126,6 +164,17 @@ namespace MyBudget.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("Wallet");
+                });
+
+            modelBuilder.Entity("MyBudget.Models.Wallet", b =>
+                {
+                    b.HasOne("MyBudget.Models.WalletType", "WalletType")
+                        .WithMany()
+                        .HasForeignKey("WalletTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("WalletType");
                 });
 
             modelBuilder.Entity("MyBudget.Models.Category", b =>

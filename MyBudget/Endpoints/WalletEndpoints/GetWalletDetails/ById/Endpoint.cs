@@ -27,7 +27,7 @@ public class Endpoint(ApplicationDbContext context) : EndpointWithoutRequest<Res
                 Name = e.Name,
                 Balance = e.Balance,
                 Currency = e.Currency,
-                Type = e.Type,
+                WalletType = e.WalletType.Name,
                 CreatedDate = e.CreatedDate
             })
             .FirstOrDefaultAsync(ct);

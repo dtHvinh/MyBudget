@@ -19,12 +19,23 @@ public class Endpoint(ApplicationDbContext context) : Endpoint<CreateWalletReque
     public override async Task<Results<Ok<CreateWalletResponse>, ProblemHttpResult>> ExecuteAsync(
         CreateWalletRequest req, CancellationToken ct)
     {
-        var wallet = new Wallet(
+        Wallet wallet = new(
             req.Name,
             req.InitialBalance,
-            req.Currency,
-            Enum.Parse<WalletType>(req.WalletType, true));
+            req.Currency);
 
+        WalletType? walletType = await _context.WalletTypes
+            .FindAsync(keyValues: [req.WalletTypeId], cancellationToken: ct);
+
+        if (walletType is null)
+        {
+            return TypedResults.Problem(
+                detail: $"Wallet type with id {req.WalletTypeId} not found.",
+                statusCode: StatusCodes.Status400BadRequest,
+                title: "Invalid wallet type");
+        }
+
+        wallet.WalletType = walletType;
         _context.Add(wallet);
 
         try

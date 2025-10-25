@@ -4,7 +4,7 @@ public record CreateWalletRequest(
     string Name,
     decimal InitialBalance,
     string Currency,
-    string WalletType);
+    int WalletTypeId);
 
 public record CreateWalletResponse(
     int WalletId,

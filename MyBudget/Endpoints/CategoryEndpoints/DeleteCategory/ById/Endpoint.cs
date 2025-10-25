@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using MyBudget.Data;
 using MyBudget.Models;
 
-namespace MyBudget.Endpoints.CategoryEndpoints.DeleteCategory;
+namespace MyBudget.Endpoints.CategoryEndpoints.DeleteCategory.ById;
 
 public class Endpoint(ApplicationDbContext context) : EndpointWithoutRequest<Results<NoContent, NotFound, ProblemHttpResult>>
 {

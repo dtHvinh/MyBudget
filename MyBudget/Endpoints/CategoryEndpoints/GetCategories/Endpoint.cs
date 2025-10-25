@@ -26,7 +26,7 @@ public class Endpoint(ApplicationDbContext context) : EndpointWithoutRequest<Ok<
                 Name = c.Name,
                 Description = c.Description,
                 Icon = c.Icon,
-                Type = c.Type
+                Type = c.Type.ToString(),
             })
             .ToListAsync(ct);
 

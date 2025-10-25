@@ -11,13 +11,13 @@ public class Endpoint(ApplicationDbContext context) : EndpointWithoutRequest<Ok<
 
     public override void Configure()
     {
-        Get("types");
+        Get("");
         Description(b => b
             .WithTags("Wallets")
             .Produces<List<GetWalletTypesResponse>>(StatusCodes.Status200OK)
             .WithSummary("Get Wallet Types")
             .WithDescription("Retrieves a list of available wallet types."));
-        Group<WalletGroup>();
+        Group<WalletTypeGroup>();
     }
 
     public override async Task<Ok<List<GetWalletTypesResponse>>> ExecuteAsync(CancellationToken ct)
